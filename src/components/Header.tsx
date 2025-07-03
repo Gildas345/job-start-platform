@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Menu, X, User, LogOut, Briefcase } from 'lucide-react';
+import { Menu, X, User, LogOut } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 const Header = () => {
@@ -35,8 +35,11 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <Briefcase className="h-8 w-8 text-primary" />
-            <span className="text-xl font-bold text-gray-900">StageFacile</span>
+            <img 
+              src="/lovable-uploads/d9d28b0f-659d-438d-baec-b0ba2361cae3.png" 
+              alt="StageFacile" 
+              className="h-10 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

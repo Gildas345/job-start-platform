@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Eye, EyeOff, Mail, Lock, Briefcase } from 'lucide-react';
+import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
 
@@ -62,8 +62,11 @@ const Login = () => {
           {/* Header */}
           <div className="text-center">
             <Link to="/" className="flex items-center justify-center space-x-2 mb-8">
-              <Briefcase className="h-10 w-10 text-primary" />
-              <span className="text-2xl font-bold text-gray-900">StageFacile</span>
+              <img 
+                src="/lovable-uploads/d9d28b0f-659d-438d-baec-b0ba2361cae3.png" 
+                alt="StageFacile" 
+                className="h-12 w-auto"
+              />
             </Link>
             <h2 className="text-3xl font-bold text-gray-900">
               Connexion
