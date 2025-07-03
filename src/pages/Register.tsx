@@ -10,6 +10,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapPin, Calendar, Building, GraduationCap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { useToast } from '@/hooks/use-toast';
+import AddressAutocomplete from '@/components/AddressAutocomplete';
 
 const Register = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -410,15 +411,11 @@ const Register = () => {
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Adresse
                       </label>
-                      <div className="relative">
-                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-                        <Input
-                          value={formData.address}
-                          onChange={(e) => handleInputChange('address', e.target.value)}
-                          placeholder="Votre adresse"
-                          className="pl-10"
-                        />
-                      </div>
+                      <AddressAutocomplete
+                        value={formData.address}
+                        onChange={(value) => handleInputChange('address', value)}
+                        placeholder="Commencez à taper votre adresse au Bénin..."
+                      />
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
