@@ -5,7 +5,7 @@ import Layout from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { User, BookOpen, FileText, Star, Clock, CheckCircle, XCircle } from 'lucide-react';
+import { User, BookOpen, FileText, Star, Clock, CheckCircle, XCircle, GraduationCap } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 
 const StudentDashboard = () => {
@@ -93,60 +93,68 @@ const StudentDashboard = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Bonjour, {user?.firstName} !
             </h1>
-            <p className="text-gray-600 mt-2">
+            <p className="text-gray-600 mt-2 text-lg">
               Voici un aperçu de votre activité sur StageFacile
             </p>
           </div>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-primary">
               <CardContent className="p-6">
                 <div className="flex items-center">
-                  <FileText className="h-8 w-8 text-primary" />
+                  <div className="p-3 bg-primary/10 rounded-full">
+                    <FileText className="h-8 w-8 text-primary" />
+                  </div>
                   <div className="ml-4">
-                    <p className="text-2xl font-bold text-gray-900">3</p>
-                    <p className="text-gray-600">Candidatures</p>
+                    <p className="text-3xl font-bold text-gray-900">3</p>
+                    <p className="text-gray-600 font-medium">Candidatures</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-yellow-500">
               <CardContent className="p-6">
                 <div className="flex items-center">
-                  <Clock className="h-8 w-8 text-yellow-500" />
+                  <div className="p-3 bg-yellow-100 rounded-full">
+                    <Clock className="h-8 w-8 text-yellow-500" />
+                  </div>
                   <div className="ml-4">
-                    <p className="text-2xl font-bold text-gray-900">1</p>
-                    <p className="text-gray-600">En attente</p>
+                    <p className="text-3xl font-bold text-gray-900">1</p>
+                    <p className="text-gray-600 font-medium">En attente</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-green-500">
               <CardContent className="p-6">
                 <div className="flex items-center">
-                  <CheckCircle className="h-8 w-8 text-green-500" />
+                  <div className="p-3 bg-green-100 rounded-full">
+                    <CheckCircle className="h-8 w-8 text-green-500" />
+                  </div>
                   <div className="ml-4">
-                    <p className="text-2xl font-bold text-gray-900">1</p>
-                    <p className="text-gray-600">Acceptée</p>
+                    <p className="text-3xl font-bold text-gray-900">1</p>
+                    <p className="text-gray-600 font-medium">Acceptée</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-secondary">
               <CardContent className="p-6">
                 <div className="flex items-center">
-                  <Star className="h-8 w-8 text-secondary" />
+                  <div className="p-3 bg-secondary/10 rounded-full">
+                    <Star className="h-8 w-8 text-secondary" />
+                  </div>
                   <div className="ml-4">
-                    <p className="text-2xl font-bold text-gray-900">5</p>
-                    <p className="text-gray-600">Recommandées</p>
+                    <p className="text-3xl font-bold text-gray-900">5</p>
+                    <p className="text-gray-600 font-medium">Recommandées</p>
                   </div>
                 </div>
               </CardContent>
@@ -223,28 +231,36 @@ const StudentDashboard = () => {
 
           {/* Quick Actions */}
           <div className="mt-8">
-            <Card>
+            <Card className="shadow-lg border-0 bg-white/80 backdrop-blur-sm">
               <CardHeader>
-                <CardTitle>Actions Rapides</CardTitle>
+                <CardTitle className="text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Actions Rapides
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <Button variant="outline" className="flex items-center space-x-2" asChild>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  <Button variant="outline" className="flex items-center space-x-2 h-12 hover:bg-primary hover:text-white transition-all duration-300" asChild>
                     <Link to="/student/profile">
-                      <User className="h-4 w-4" />
+                      <User className="h-5 w-5" />
                       <span>Mon Profil</span>
                     </Link>
                   </Button>
-                  <Button variant="outline" className="flex items-center space-x-2" asChild>
+                  <Button variant="outline" className="flex items-center space-x-2 h-12 hover:bg-primary hover:text-white transition-all duration-300" asChild>
                     <Link to="/internship-offers">
-                      <BookOpen className="h-4 w-4" />
+                      <BookOpen className="h-5 w-5" />
                       <span>Rechercher des Stages</span>
                     </Link>
                   </Button>
-                  <Button variant="outline" className="flex items-center space-x-2" asChild>
+                  <Button variant="outline" className="flex items-center space-x-2 h-12 hover:bg-primary hover:text-white transition-all duration-300" asChild>
                     <Link to="/student/applications">
-                      <FileText className="h-4 w-4" />
+                      <FileText className="h-5 w-5" />
                       <span>Mes Candidatures</span>
+                    </Link>
+                  </Button>
+                  <Button variant="outline" className="flex items-center space-x-2 h-12 hover:bg-secondary hover:text-white transition-all duration-300" asChild>
+                    <Link to="/student/applications">
+                      <GraduationCap className="h-5 w-5" />
+                      <span>Niveaux d'Études</span>
                     </Link>
                   </Button>
                 </div>
