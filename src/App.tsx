@@ -14,7 +14,13 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import StudentDashboard from "./pages/StudentDashboard";
 import StudentApplications from "./pages/StudentApplications";
+import StudentProfile from "./pages/StudentProfile";
+import StudentRecommendedOffers from "./pages/StudentRecommendedOffers";
 import CompanyDashboard from "./pages/CompanyDashboard";
+import CompanyPostOffer from "./pages/CompanyPostOffer";
+import CompanyProfile from "./pages/CompanyProfile";
+import CompanyReceivedApplications from "./pages/CompanyReceivedApplications";
+import CompanyApplicationDetails from "./pages/CompanyApplicationDetails";
 import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
@@ -35,10 +41,23 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            
+            {/* Student Routes */}
             <Route path="/student/dashboard" element={<StudentDashboard />} />
             <Route path="/student/applications" element={<StudentApplications />} />
+            <Route path="/student/profile" element={<StudentProfile />} />
+            <Route path="/student/recommended-offers" element={<StudentRecommendedOffers />} />
+            
+            {/* Company Routes */}
             <Route path="/company/dashboard" element={<CompanyDashboard />} />
+            <Route path="/company/post-offer" element={<CompanyPostOffer />} />
+            <Route path="/company/profile" element={<CompanyProfile />} />
+            <Route path="/company/received-applications" element={<CompanyReceivedApplications />} />
+            <Route path="/company/application/:id" element={<CompanyApplicationDetails />} />
+            
+            {/* Admin Routes */}
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
