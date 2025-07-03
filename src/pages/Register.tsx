@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
@@ -50,8 +49,92 @@ const Register = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
 
+  // Listes d'établissements et de filières
+  const lycees = [
+    'Lycée Technique Coulibaly Cotonou',
+    'Lycée Technique et Professionnel de Porto-Novo',
+    'Lycée Technique et Professionnel de Bohicon',
+    'Lycée Houffon d\'Abomey',
+    'Lycée Mafory Bangoura d\'Abomey',
+    'Lycée Technique et Professionnel de Bopa',
+    'Lycée Technique d\'Amitié Sino-Béninoise d\'Akassato',
+    'Autres'
+  ];
+
+  const universites = [
+    'UATM (Université Africaine de Technologie et de Management)',
+    'Les Cours SONOU',
+    'Institut de Formation et de Recherche en Informatique (IFRI)',
+    'Haute École de Commerce et de Management (HECM)',
+    'ISMA – Institut Supérieur des Métiers de l\'Audiovisuel',
+    'Institut National Supérieur de Technologie Industrielle (INSTI) de Lokossa',
+    'Institut Supérieur de Génie Civil et de Gestion (ISGG)',
+    'Autres'
+  ];
+
+  const filieresBac = [
+    'Hôtellerie-Restauration (HR)',
+    'Métiers de la Mode-Vêtements (MMV)',
+    'Bâtiment et Travaux Publics (BTP)',
+    'Génie Civil',
+    'Installation et Maintenance en Informatique (IMI)',
+    'Comptabilité et Mercatique (CoM)',
+    'Producteur Multimédia (PM)',
+    'Développeur Web et Mobile (DWM)',
+    'Électrotechnique (EL)',
+    'Électronique Appliquée (EA)',
+    'Autre'
+  ];
+
+  const filieresUniversite = [
+    'Génie Civil (Bâtiments et Travaux Publics)',
+    'Génie Électrique et Informatique',
+    'Journalisme Audiovisuel',
+    'Réalisation Cinéma et Télévision',
+    'Métiers de l\'Image',
+    'Métiers du Son',
+    'Finance Comptabilité et Audit',
+    'Banque Finance et Assurance',
+    'Gestion des Ressources Humaines',
+    'Tourisme et Hôtellerie',
+    'Génie Informatique',
+    'Sécurité des Systèmes Informatiques',
+    'Réseaux Informatiques & Télécommunications (RT)',
+    'Informatique Appliquée',
+    'Télécommunications',
+    'Réseaux Informatiques',
+    'Systèmes d\'Information',
+    'Développement Web et Mobile (DWMU)',
+    'Intelligence Artificielle (IA)',
+    'Autre'
+  ];
+
+  const getEtablissements = () => {
+    if (formData.studyLevel === 'bac') {
+      return lycees;
+    }
+    return universites;
+  };
+
+  const getFilieres = () => {
+    if (formData.studyLevel === 'bac') {
+      return filieresBac;
+    }
+    return filieresUniversite;
+  };
+
   const handleInputChange = (field: string, value: string | boolean) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData(prev => {
+      const newData = { ...prev, [field]: value };
+      
+      // Reset establishment and studyField when studyLevel changes
+      if (field === 'studyLevel') {
+        newData.establishment = '';
+        newData.studyField = '';
+      }
+      
+      return newData;
+    });
   };
 
   const validateStep = () => {
@@ -360,24 +443,6 @@ const Register = () => {
                     <h3 className="text-lg font-semibold">Informations scolaires</h3>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Établissement *
-                      </label>
-                      <Select value={formData.establishment} onValueChange={(value) => handleInputChange('establishment', value)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Sélectionnez votre établissement" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="universite-paris">Université de Paris</SelectItem>
-                          <SelectItem value="universite-lyon">Université de Lyon</SelectItem>
-                          <SelectItem value="universite-marseille">Université de Marseille</SelectItem>
-                          <SelectItem value="sciences-po">Sciences Po</SelectItem>
-                          <SelectItem value="epitech">Epitech</SelectItem>
-                          <SelectItem value="autre">Autre</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
                         Niveau d'études *
                       </label>
                       <Select value={formData.studyLevel} onValueChange={(value) => handleInputChange('studyLevel', value)}>
@@ -396,20 +461,43 @@ const Register = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Filière d'études *
+                        Établissement *
                       </label>
-                      <Select value={formData.studyField} onValueChange={(value) => handleInputChange('studyField', value)}>
+                      <Select 
+                        value={formData.establishment} 
+                        onValueChange={(value) => handleInputChange('establishment', value)}
+                        disabled={!formData.studyLevel}
+                      >
                         <SelectTrigger>
-                          <SelectValue placeholder="Sélectionnez votre filière" />
+                          <SelectValue placeholder={formData.studyLevel ? "Sélectionnez votre établissement" : "Sélectionnez d'abord votre niveau"} />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="informatique">Informatique</SelectItem>
-                          <SelectItem value="marketing">Marketing</SelectItem>
-                          <SelectItem value="commerce">Commerce</SelectItem>
-                          <SelectItem value="ingenierie">Ingénierie</SelectItem>
-                          <SelectItem value="droit">Droit</SelectItem>
-                          <SelectItem value="medecine">Médecine</SelectItem>
-                          <SelectItem value="autre">Autre</SelectItem>
+                          {getEtablissements().map((etablissement) => (
+                            <SelectItem key={etablissement} value={etablissement}>
+                              {etablissement}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Filière d'études *
+                      </label>
+                      <Select 
+                        value={formData.studyField} 
+                        onValueChange={(value) => handleInputChange('studyField', value)}
+                        disabled={!formData.studyLevel}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder={formData.studyLevel ? "Sélectionnez votre filière" : "Sélectionnez d'abord votre niveau"} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {getFilieres().map((filiere) => (
+                            <SelectItem key={filiere} value={filiere}>
+                              {filiere}
+                            </SelectItem>
+                          ))}
                         </SelectContent>
                       </Select>
                     </div>
