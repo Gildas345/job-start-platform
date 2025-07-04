@@ -21,7 +21,10 @@ import CompanyPostOffer from "./pages/CompanyPostOffer";
 import CompanyProfile from "./pages/CompanyProfile";
 import CompanyReceivedApplications from "./pages/CompanyReceivedApplications";
 import CompanyApplicationDetails from "./pages/CompanyApplicationDetails";
+import CompanyMyOffers from "./pages/CompanyMyOffers";
 import AdminDashboard from "./pages/AdminDashboard";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +44,8 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
             
             {/* Student Routes */}
             <Route path="/student/dashboard" element={<StudentDashboard />} />
@@ -52,6 +57,7 @@ const App = () => (
             <Route path="/company/dashboard" element={<CompanyDashboard />} />
             <Route path="/company/post-offer" element={<CompanyPostOffer />} />
             <Route path="/company/profile" element={<CompanyProfile />} />
+            <Route path="/company/my-offers" element={<CompanyMyOffers />} />
             <Route path="/company/received-applications" element={<CompanyReceivedApplications />} />
             <Route path="/company/application/:id" element={<CompanyApplicationDetails />} />
             
